@@ -2,6 +2,7 @@
 marp: true
 theme: base
 headingDivider: 3
+paginate: true
 ---
 
 # Maven
@@ -14,17 +15,24 @@ A build tool to craft a runtime artifact out of project sources.
 
 ---
 
-![w30:h30](img/ivymx-sources.png)
+1. We have a java project
+
+![bg right:60% height:650px](img/ivymx-sources.png)
 
 ---
 
-![weight:30cm](img/ivymx-1.2.5-SNAPSHOT-jar.png)
+2. But we need it compiled as `.class` files in a `*.jar`
+
+![](img/ivymx-1.2.5-SNAPSHOT-jar.png)
 
 ---
 
-![weight:30cm](img/mvnCleanVErify.gif)
+Maven does
+the job for us
+`mvn clean verify`
 
----
+![bg height:650px](img/mvnCleanVErify.gif)
+
 
 ## Build receipt
 
@@ -106,12 +114,12 @@ During the build of an IvyProject multiple builders generate sources:
 ### DataClasses:
 
 - are defined in our custom `.ivyClass` format.
-  ![](img/dataclass-project.png)
+  ![bg right:66% height:650px](img/dataclass-project.png)
 
 ----  
 
 - a builder will generate a java source file out of it. (which afterwards will be compiled)
-  ![](img/dataclass-generated.png)
+  ![height:600px](img/dataclass-generated.png)
 
 ### WebServiceProcess (SOAP):
 
@@ -149,12 +157,15 @@ An ivy-engine is being used to supply core-dependencies.
 - it is being fetched from remote; browsing our public listing of available engines
 - it's cached locally `.m2/repository/.cache/ivy`
 - we enrich the `classpath` of well known maven plugins, such as maven-surefire, to make our special dependencies known.
+  - you can see this by running maven with `-X` 
 
 ### m2 Ecosystem
 
-- we can consume any java `jar` from Maven repositories and use it in ivy projects.
-- ivy-engines do classically not have a running Maven environment, so the dependent jar's must supply it for deployments onto an engine.
+- we can consume any java `jar` from Maven repos and use it.
+- ivy-engines do classically not have a running Maven environment.
 - the build plugin will include it in the generated `*.iar` file.
+
+![bg right:60% height:400](img/maven-deps-designer.png)
 
 ## Integration-tests
 
