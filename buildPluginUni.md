@@ -135,16 +135,28 @@ During the build of an IvyProject multiple builders generate sources:
 
 after having all java sources generated; the project-build-plugin compiles the sources as .class files:
 
-1. JDTCompiler is being used to compile java files, not `javac`
-   1. `.classpath` + `.settings/org.eclipse.jdt.core.prefs` define the main compiler settings
-   2. Maven `pom.xml` settings, such as `build/sourceDirectory`, can override native JDT file values
+JDTCompiler is being used to compile java files, not `javac`
+
+---
+
+`.classpath` + `.settings/org.eclipse.jdt.core.prefs` define the main compiler settings
+
+![height:500](img/jdt-files.png)
+
+---
+
+Maven `pom.xml` settings, such as `build/sourceDirectory`, can override native JDT file values
+
+![height:500](img/pom-directives-duplicatedToCp.png)
+
 
 ### IvyScript
 
-2. **IvyScript** code expression and blocks are being validated:
-   1. Invalid statements are being reported, just like other java sources problems
-   2. we invented IvyScript, so we are responsible to maintain a build integration for it.
-   3. technically: a process-validation is being run, in order to find invalid statements.
+IvyScript code expression and blocks are being validated:
+
+ 1. Invalid statements are being reported, just like other java sources problems
+ 2. we invented IvyScript, so we are responsible to maintain a build integration for it.
+ 3. technically: a process-validation is being run, in order to find invalid statements.
 
 ## Dependencies
 
@@ -216,10 +228,17 @@ Special:
   - compilation classpath with the project-build-plugin is as open as is can be: everything from the ivy-core can be accessed
   - deployments of projects which are being built are expensive
 
+---
+
+Special:
+
 - many goals require an engine to run
-  
   - slow to download on the first attempt
   - custom non maven infrastructure to list available engines on the web.
+
+- mixture of JDT and POM configurations
+  - where do I have to define my target java version?
+  - where do I need to define my special source-dir location?
 
 # Quo Vadis
 
