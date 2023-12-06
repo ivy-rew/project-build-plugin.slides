@@ -152,6 +152,12 @@ Maven `pom.xml` settings, such as `build/sourceDirectory`, can override native J
 
 ### IvyScript
 
+We're not just compiling 'java' sources...
+
+![height:500](img/script-errors.png)
+
+----
+
 IvyScript code expression and blocks are being validated:
 
  1. Invalid statements are being reported, just like other java sources problems
